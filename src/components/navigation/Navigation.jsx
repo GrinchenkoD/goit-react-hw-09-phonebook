@@ -1,11 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { NavLink, Link } from 'react-router-dom'
 import { getIsAuthSelector } from '../../redux/auth/auth.selectors'
 
 import styles from "./Navigation.module.css"
 
-const Navigation = ({isAuth}) => {
+const Navigation = () => {
+    
+    const isAuth = useSelector(getIsAuthSelector);
+
     return (
         <div className={styles.thumb}>
             <span><Link to="/" className={styles.logo}>LOGO</Link></span>
@@ -17,21 +20,18 @@ const Navigation = ({isAuth}) => {
                             </NavLink>
                     </li>
 
-                    {!!isAuth&&
-                   ( <li className={styles.item}>
-                        <NavLink to="/contacts" className={styles.link} activeClassName={styles.activeLink}>
-                            Контакты
+                    {!!isAuth &&
+                        (<li className={styles.item}>
+                            <NavLink to="/contacts" className={styles.link} activeClassName={styles.activeLink}>
+                                Контакты
                         </NavLink>
-                    </li>)}
+                        </li>)}
                 </ul>
             </nav>
         </div>
     )
-}
-
-const mapStateToProps = (state)=> ({
-   isAuth: getIsAuthSelector(state)
-})
+};
 
 
-export default connect(mapStateToProps,null) (Navigation)
+
+export default Navigation;

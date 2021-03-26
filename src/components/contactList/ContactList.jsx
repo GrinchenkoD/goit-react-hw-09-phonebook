@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import { addContact, getContacts, removeContact } from '../../redux/contacts/contacts.operations'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getContacts, removeContact } from '../../redux/contacts/contacts.operations'
 import { doSomeLoadingSelector, filteredContacts } from '../../redux/contacts/contacts.selectors'
 import Loader from "../loader/Loader"
 import sprite from "../icons/sprite.svg"
@@ -8,23 +8,25 @@ import sprite from "../icons/sprite.svg"
 import styles from "./ContactList.module.css"
 
 
-class ContactList extends PureComponent {
-     
+const ContactList = () => {
+    
 
-    componentDidMount() {
-     this.props.getContacts()
-    }
-  
+    const contacts = useSelector(filteredContacts);
+    const loading = useSelector(doSomeLoadingSelector)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getContacts())
+    },[dispatch]);
 
 
-    handleDelete = (event) => {
+    const handleDelete = (event) => {
         const { id } = event.target.closest("[data-id]").dataset;
-        this.props.removeContact(id)
-
-    }
+        dispatch(removeContact(id));
+    };
      
-render() {
-        const {contacts,loading}=this.props
+
 
     return (
 
@@ -41,7 +43,7 @@ render() {
                             </div>
                             <button
                                 type="button"
-                                onClick={this.handleDelete}
+                                onClick={handleDelete}
                                 className={styles.deleteBtn}
                                 disabled={loading}
                                 aria-label="delete contact"
@@ -60,19 +62,6 @@ render() {
         </>
 
     )
-}}
-
-const mapStateToProps = (state) => ({
-    contacts: filteredContacts(state),
-    loading: doSomeLoadingSelector(state)
-})
-
-const mapDispatchToProps = {
-    addContact,
-    getContacts,
-    removeContact
-    
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList)
+export default ContactList;

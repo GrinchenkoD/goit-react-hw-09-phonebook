@@ -1,72 +1,60 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { logIn } from '../../redux/auth/auth.operations'
-import { getIsAuthSelector } from '../../redux/auth/auth.selectors'
+
 
 import styles from "./Login.module.css"
 
-const InitialState = {
+const initialState = {
     email: '',
     password:''
 }
-class Login extends Component {
+const Login = () => {
+    
+    const [ user, setUser ] = useState(initialState);
+    const dispatch = useDispatch();
 
-    state = {
-        ...InitialState
-    }
-    handleChange = (event) => {
-        const { name, value } = event.target
-        this.setState({[name]:value})
-    }
 
-    handleSubmit = (event) => {
+    const handleChange = (event) => {
+       const { name, value } = event.target;
+        setUser((prevState)=>({...prevState, [name]: value }));
+    };
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-        this.props.onLogin(this.state).then(() => {
-         if (this.props.isAuth) {
-        this.props.history.push("/contacts")
-    }})   
-    }
+        dispatch(logIn(user));
+    };
 
 
-    render() {
-        const {email, password}=this.state
-        return (
-            <form className={styles.form} onSubmit={this.handleSubmit}>
-                <label htmlFor="email" className={styles.label}>Email
+    
+    return (
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <label htmlFor="email" className={styles.label}>Email
                     <input id="email"
-                        name='email'
-                        type="mail"
-                        className={styles.input}
-                        placeholder="Email*"
-                        value={email}
-                        onChange={this.handleChange}
-                        required
-                    />
-                </label>
-                <label htmlFor="password"  className={styles.label}>Password
+                    name='email'
+                    type="mail"
+                    className={styles.input}
+                    placeholder="Email*"
+                    value={user?.email}
+                    onChange={handleChange}
+                    required
+                />
+            </label>
+            <label htmlFor="password" className={styles.label}>Password
                     <input id="password"
-                        name='password'
-                        type="password"
-                        className={styles.input}
-                        placeholder="Password*"
-                        value={password}
-                        onChange={this.handleChange}
-                        required
-                    />
-                </label>
-                <button type="submit"  className={styles.submitBtn}>Log in</button>
-            </form>
-        )
-    }
-}
+                    name='password'
+                    type="password"
+                    className={styles.input}
+                    placeholder="Password*"
+                    value={user?.password}
+                    onChange={handleChange}
+                    required
+                />
+            </label>
+            <button type="submit" className={styles.submitBtn}>Log in</button>
+        </form>
+    )
+    
+};
 
-const mapStateToProps = (state)=> ({
-   isAuth: getIsAuthSelector(state)
-})
-
-const mapDispatchToProps = {
-   onLogin: logIn,
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps) (Login)
+export default Login;

@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from "./AuthNav.module.css"
 
-export default class AuthNav extends Component {
-    render() {
+ const AuthNav=()=> {
+   
         return (
              <ul className={styles.list}>
                 <li className={styles.item}>
@@ -18,5 +17,6 @@ export default class AuthNav extends Component {
                 </li>
             </ul>
         )
-    }
+    
 }
+export default AuthNav
