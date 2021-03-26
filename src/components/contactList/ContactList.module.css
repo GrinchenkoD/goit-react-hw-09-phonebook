@@ -1,0 +1,37 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.item:not(:last-child) {
+  margin-bottom: 10px;
+}
+.textThumb {
+  display: block;
+  width: 100%;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(256, 256, 256, 0.8);
+}
+.deleteBtn {
+  font-size: 16px;
+  padding: 8px 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: #8739f9;
+  color: rgba(256, 256, 256, 0.8);
+  display: flex;
+}
+.deleteIco {
+  fill: rgba(256, 256, 256, 0.8);
+}
+.noContacts {
+  padding: 20px 0;
+  text-align: center;
+  color: #8739f9;
+}

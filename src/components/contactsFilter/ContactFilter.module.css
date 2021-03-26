@@ -1,0 +1,24 @@
+.input {
+  display: block;
+  height: 2.5rem;
+  width: 90%;
+  padding: 5px 10px;
+  margin: 10px 0px;
+
+  color: #8739f9;
+  background-color: #3f3f3f;
+  border: 2px solid #8739f9;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.input:focus {
+  border: 2px solid #c651cd;
+}
+
+.input::placeholder {
+  font-size: 16px;
+}
+.label {
+  font-size: 20px;
+  color: rgba(256, 256, 256, 0.8);
+}

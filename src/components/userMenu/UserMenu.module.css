@@ -1,0 +1,40 @@
+.thumb {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.name {
+  color: #c651cd;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+/* .name::after {
+  content: "";
+  display: block;
+
+  height: 4px;
+  width: 100%;
+  background-color: #c651cd;
+  border-radius: 5px;
+} */
+
+.btn {
+  position: relative;
+
+  font-size: 16px;
+  padding: 8px 15px;
+
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: #8739f9;
+  color: rgba(256, 256, 256, 0.8);
+}
+.submitBtn:active {
+  background-color: #c651cd;
+}

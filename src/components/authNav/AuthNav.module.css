@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+}
+.item:not(:last-child) {
+  margin-right: 30px;
+}
+.link {
+  color: #8739f9;
+}
+
+.activeLink {
+  color: #c651cd;
+}
+
+.activeLink::after {
+  content: "";
+  display: block;
+
+  height: 4px;
+  width: 100%;
+  background-color: #c651cd;
+}

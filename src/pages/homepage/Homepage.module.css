@@ -1,0 +1,29 @@
+.title {
+  margin: 50px 0 100px;
+  color: rgba(256, 256, 256, 0.8);
+  text-align: center;
+}
+.thumb {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 100px;
+  font-size: 25px;
+  padding: 8px 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: #8739f9;
+  color: rgba(256, 256, 256, 0.8);
+  display: flex;
+}
+.link:not(:last-child) {
+  margin-right: 40px;
+}
